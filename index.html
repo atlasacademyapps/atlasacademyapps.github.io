@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Atlas Academy Apps — Apps que compras una vez y son tuyas para siempre</title>
+<meta name="description" content="Estudio independiente de apps. Pagas una vez y es tuyo de por vida. Sin suscripciones abusivas, sin letra pequeña.">
+
+<!-- Open Graph / redes -->
+<meta property="og:title" content="Atlas Academy Apps">
+<meta property="og:description" content="Apps que compras una vez y son tuyas para siempre. Estudio independiente.">
+<meta property="og:type" content="website">
+<!-- <meta property="og:image" content="assets/og.png"> sube una imagen 1200x630 y descomenta -->
+
+<link rel="icon" href="assets/favicon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --midnight:#0F2138;
+    --laton:#D89A3C;
+    --verdin:#2E7D74;
+    --papel:#F4EFE3;
+    --pizarra:#46566B;
+    --nube:#E2D9C6;
+
+    --display:"Fraunces",Georgia,serif;
+    --body:"Inter",system-ui,sans-serif;
+    --mono:"Space Mono",ui-monospace,monospace;
+
+    --maxw:1120px;
+    --pad:clamp(20px,5vw,64px);
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{
+    font-family:var(--body);
+    background:var(--midnight);
+    color:var(--papel);
+    line-height:1.6;
+    font-weight:400;
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+
+  .wrap{max-width:var(--maxw);margin:0 auto;padding-left:var(--pad);padding-right:var(--pad)}
+
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:.72rem;
+    letter-spacing:.28em;
+    text-transform:uppercase;
+    color:var(--laton);
+  }
+
+  /* ---------- NAV ---------- */
+  header{position:sticky;top:0;z-index:50;background:rgba(15,33,56,.82);backdrop-filter:blur(10px);border-bottom:1px solid rgba(226,217,198,.10)}
+  .nav{display:flex;align-items:center;justify-content:space-between;padding-top:16px;padding-bottom:16px}
+  .brand{display:flex;align-items:center;gap:12px;font-family:var(--display);font-weight:600;font-size:1.25rem;color:var(--papel)}
+  .brand .mark{flex:0 0 auto}
+  .brand-logo{height:34px;width:auto;flex:0 0 auto}
+  footer .brand-logo{height:30px}
+  .nav-links{display:flex;align-items:center;gap:28px}
+  .nav-links a{font-size:.95rem;color:var(--nube);transition:color .2s}
+  .nav-links a:hover{color:var(--laton)}
+  .nav-cta{font-family:var(--mono);font-size:.78rem;letter-spacing:.08em;border:1px solid var(--laton);color:var(--laton);padding:9px 16px;border-radius:2px;transition:background .2s,color .2s}
+  .nav-cta:hover{background:var(--laton);color:var(--midnight)}
+  .menu-toggle{display:none;background:none;border:0;color:var(--papel);cursor:pointer;padding:6px}
+  @media(max-width:780px){
+    .nav-links{display:none}
+    .menu-toggle{display:block}
+    .nav-links.open{display:flex;position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:0;background:var(--midnight);border-bottom:1px solid rgba(226,217,198,.12);padding:8px var(--pad) 20px}
+    .nav-links.open a{padding:12px 0;border-bottom:1px solid rgba(226,217,198,.08);width:100%}
+    .nav-links.open .nav-cta{margin-top:14px;text-align:center}
+  }
+
+  /* ---------- topographic texture ---------- */
+  .topo{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.15}
+  .topo path{fill:none;stroke:var(--laton);stroke-width:1.4}
+
+  /* ---------- HERO ---------- */
+  .hero{position:relative;overflow:hidden;padding-top:clamp(72px,12vh,140px);padding-bottom:clamp(72px,12vh,140px)}
+  .hero .wrap{position:relative;z-index:2;max-width:880px}
+  .hero h1{
+    font-family:var(--display);
+    font-weight:600;
+    font-size:clamp(2.4rem,6.4vw,4.6rem);
+    line-height:1.04;
+    letter-spacing:-.01em;
+    margin:22px 0 24px;
+    color:var(--papel);
+  }
+  .hero h1 em{font-style:italic;color:var(--laton)}
+  .hero .lede{font-size:clamp(1.05rem,2.1vw,1.3rem);color:var(--nube);max-width:42ch;margin-bottom:36px}
+  .cta-row{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+  .btn{font-family:var(--body);font-weight:500;font-size:1rem;padding:14px 26px;border-radius:3px;transition:transform .15s,background .2s,color .2s;border:1px solid transparent;cursor:pointer}
+  .btn-primary{background:var(--laton);color:var(--midnight)}
+  .btn-primary:hover{transform:translateY(-2px)}
+  .btn-ghost{border-color:rgba(226,217,198,.4);color:var(--papel)}
+  .btn-ghost:hover{border-color:var(--papel);background:rgba(226,217,198,.06)}
+
+  .polaris{display:flex;align-items:center;gap:14px;margin-top:48px;color:var(--pizarra)}
+  .polaris .star{flex:0 0 auto}
+  .polaris span{font-family:var(--mono);font-size:.78rem;letter-spacing:.06em;color:var(--nube);opacity:.85}
+
+  /* ---------- MANIFIESTO ---------- */
+  .manifiesto{background:var(--papel);color:var(--midnight);padding:clamp(64px,10vh,120px) 0}
+  .manifiesto .eyebrow{color:var(--verdin)}
+  .manifiesto blockquote{
+    font-family:var(--display);
+    font-weight:500;
+    font-size:clamp(1.7rem,4.2vw,3rem);
+    line-height:1.22;
+    letter-spacing:-.005em;
+    max-width:20ch;
+    margin:18px 0 0;
+  }
+  .manifiesto blockquote em{font-style:italic;color:var(--laton)}
+  .manifiesto .foot{margin-top:28px;color:var(--pizarra);max-width:54ch;font-size:1.05rem}
+
+  /* ---------- SECTION shared ---------- */
+  .section{padding:clamp(64px,10vh,120px) 0}
+  .section-head{max-width:60ch;margin-bottom:48px}
+  .section-head h2{font-family:var(--display);font-weight:600;font-size:clamp(1.9rem,4vw,2.8rem);line-height:1.1;margin-top:14px}
+
+  .light{background:var(--papel);color:var(--midnight)}
+  .light .section-head h2{color:var(--midnight)}
+  .light .eyebrow{color:var(--verdin)}
+
+  /* ---------- APPS ---------- */
+  .apps-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+  @media(max-width:720px){.apps-grid{grid-template-columns:1fr}}
+  .app-card{background:var(--midnight);color:var(--papel);border-radius:6px;padding:34px;display:flex;flex-direction:column;min-height:280px;position:relative;overflow:hidden;border:1px solid rgba(15,33,56,.08)}
+  .app-card.soon{background:transparent;color:var(--pizarra);border:1px dashed rgba(70,86,107,.45)}
+  .app-card .tag{font-family:var(--mono);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--laton)}
+  .app-card.soon .tag{color:var(--pizarra)}
+  .app-card h3{font-family:var(--display);font-weight:600;font-size:1.9rem;margin:12px 0 8px}
+  .app-card p{font-size:1rem;color:var(--nube);max-width:34ch}
+  .app-card.soon p{color:var(--pizarra)}
+  .app-card .card-cta{margin-top:auto;padding-top:24px;display:flex;gap:18px;flex-wrap:wrap}
+  .app-card .card-cta a{font-family:var(--mono);font-size:.82rem;letter-spacing:.06em;color:var(--laton);border-bottom:1px solid transparent;transition:border-color .2s}
+  .app-card .card-cta a:hover{border-color:var(--laton)}
+  .app-card.soon .iso{position:absolute;right:-20px;bottom:-20px;opacity:.18}
+
+  /* ---------- BRÚJULA / principios ---------- */
+  .compass-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid rgba(70,86,107,.25)}
+  @media(max-width:880px){.compass-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:520px){.compass-grid{grid-template-columns:1fr}}
+  .principle{padding:34px 28px 34px 0;border-right:1px solid rgba(70,86,107,.25);border-bottom:1px solid rgba(70,86,107,.25)}
+  .principle:last-child{border-right:0}
+  @media(max-width:880px){.principle{border-right:0;padding-right:28px}.principle:nth-child(odd){border-right:1px solid rgba(70,86,107,.25)}}
+  @media(max-width:520px){.principle{border-right:0!important}}
+  .principle .point{font-family:var(--mono);font-weight:700;font-size:1.1rem;color:var(--verdin);display:flex;align-items:center;gap:10px}
+  .principle .point::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--laton)}
+  .principle h4{font-family:var(--display);font-weight:600;font-size:1.3rem;margin:14px 0 8px;color:var(--midnight)}
+  .principle p{font-size:.98rem;color:var(--pizarra)}
+
+  /* ---------- DOSSIER band ---------- */
+  .band{background:var(--verdin);color:var(--papel)}
+  .band .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:24px;padding-top:54px;padding-bottom:54px}
+  .band h2{font-family:var(--display);font-weight:600;font-size:clamp(1.5rem,3vw,2.1rem);max-width:20ch}
+  .band p{color:var(--nube);max-width:40ch;margin-top:8px}
+  .band .btn-primary{background:var(--papel);color:var(--midnight)}
+
+  /* ---------- CONTACTO ---------- */
+  .contacto{position:relative;overflow:hidden;text-align:center;padding:clamp(72px,12vh,130px) 0}
+  .contacto .wrap{position:relative;z-index:2}
+  .contacto h2{font-family:var(--display);font-weight:600;font-size:clamp(2rem,5vw,3.4rem);margin:14px 0 18px}
+  .contacto .mail{display:inline-block;font-family:var(--display);font-style:italic;font-size:clamp(1.3rem,3.4vw,2rem);color:var(--laton);border-bottom:2px solid transparent;transition:border-color .2s}
+  .contacto .mail:hover{border-color:var(--laton)}
+  .contacto .socials{margin-top:30px;font-family:var(--mono);font-size:.8rem;letter-spacing:.12em;color:var(--nube);opacity:.8}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:#0b1a2c;border-top:1px solid rgba(226,217,198,.10);padding:48px 0 38px}
+  .foot-grid{display:flex;flex-wrap:wrap;justify-content:space-between;gap:30px;align-items:flex-start}
+  .foot-grid .brand{margin-bottom:6px}
+  .foot-links{display:flex;flex-wrap:wrap;gap:22px;font-size:.9rem;color:var(--nube)}
+  .foot-links a{transition:color .2s}
+  .foot-links a:hover{color:var(--laton)}
+  .foot-meta{font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;color:var(--pizarra);margin-top:30px}
+
+  /* ---------- reveal ---------- */
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    .reveal{opacity:1;transform:none;transition:none}
+    .btn-primary:hover{transform:none}
+  }
+
+  :focus-visible{outline:2px solid var(--laton);outline-offset:3px;border-radius:2px}
+</style>
+</head>
+<body>
+
+<!-- ===================== NAV ===================== -->
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#top" aria-label="Atlas Academy Apps, inicio">
+      <!-- Tu logo NEGATIVO (versión clara para fondo oscuro). Si prefieres solo el isotipo, cambia el src. -->
+      <img class="brand-logo" src="assets/atlas-negativo.png" alt="Atlas Academy Apps">
+    </a>
+    <nav class="nav-links" id="nav">
+      <a href="#apps">Apps</a>
+      <a href="#principios">Cómo trabajamos</a>
+      <a href="#dossier">Dossier</a>
+      <a class="nav-cta" href="mailto:atlasacademyapps@gmail.com">Contacto</a>
+    </nav>
+    <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false" id="toggle">
+      <svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><path d="M3 7h20M3 13h20M3 19h20" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+</header>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero" id="top">
+  <svg class="topo" viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <path d="M-50 120 C200 60 400 180 650 110 S1050 40 1260 130"/>
+    <path d="M-50 200 C220 150 420 260 680 190 S1060 130 1260 210"/>
+    <path d="M-50 290 C200 250 430 350 700 280 S1080 230 1260 300"/>
+    <path d="M-50 390 C240 350 440 450 690 380 S1070 330 1260 400"/>
+    <path d="M-50 490 C210 450 420 540 700 470 S1090 430 1260 500"/>
+  </svg>
+  <div class="wrap">
+    <p class="eyebrow">Estudio de apps · España</p>
+    <h1>Apps que compras una vez y son tuyas <em>para siempre</em>.</h1>
+    <p class="lede">Estudio independiente. Sin suscripciones que no se acaban nunca, sin letra pequeña.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="#apps">Ver nuestras apps</a>
+      <a class="btn btn-ghost" href="dossier.pdf">Descargar dossier</a>
+    </div>
+    <div class="polaris">
+      <svg class="star" width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><path d="M11 0 l1.6 7.4 7.4 1.6 -7.4 1.6 L11 22 l-1.6 -11.4 -7.4 -1.6 7.4 -1.6 Z" fill="#D89A3C"/></svg>
+      <span>Como la estrella polar: un precio fijo que no se mueve.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== MANIFIESTO ===================== -->
+<section class="manifiesto">
+  <div class="wrap reveal">
+    <p class="eyebrow">Por qué existimos</p>
+    <blockquote>Pagas una vez y es tuyo. Nada de cuotas que se comen lo que <em>ya compraste</em>.</blockquote>
+    <p class="foot">Creemos en el software honesto. Hacemos apps cuidadas, con precio justo, y las mantenemos. Si algo cuesta dinero, lo decimos claro y antes de que pagues.</p>
+  </div>
+</section>
+
+<!-- ===================== APPS ===================== -->
+<section class="section light" id="apps">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">Lo que hemos hecho</p>
+      <h2>Nuestras apps</h2>
+    </div>
+    <div class="apps-grid">
+      <article class="app-card reveal">
+        <span class="tag">Android · 3-7 años</span>
+        <h3>Capibara Academy</h3>
+        <p>Aprender jugando con Lumi, una capibara que enseña mates, lectura, vocabulario e inglés. Sin anuncios mientras tu peque juega.</p>
+        <div class="card-cta">
+          <a href="https://capibaraacademy.carrd.co" target="_blank" rel="noopener">Ver Capibara →</a>
+          <!-- Cuando esté publicada, añade el enlace directo a Google Play -->
+          <a href="https://capibaraacademy.carrd.co" target="_blank" rel="noopener">Google Play →</a>
+        </div>
+      </article>
+      <article class="app-card soon reveal">
+        <span class="tag">En camino</span>
+        <h3>Más por venir</h3>
+        <p>Estamos cocinando la siguiente. Escríbenos si quieres enterarte cuando salga.</p>
+        <div class="card-cta">
+          <a href="mailto:atlasacademyapps@gmail.com">Avisadme →</a>
+        </div>
+        <svg class="iso" width="120" height="120" viewBox="0 0 32 32" aria-hidden="true">
+          <circle cx="16" cy="18" r="11" fill="none" stroke="#46566B" stroke-width="1.4"/>
+          <path d="M16 9 L21 24 L16 21 L11 24 Z" fill="#46566B"/>
+        </svg>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PRINCIPIOS / BRÚJULA ===================== -->
+<section class="section light" id="principios" style="padding-top:0">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">Nuestros puntos cardinales</p>
+      <h2>Cómo trabajamos</h2>
+    </div>
+    <div class="compass-grid reveal">
+      <div class="principle">
+        <div class="point">N</div>
+        <h4>Paga una vez</h4>
+        <p>Sin suscripciones abusivas. Lo que compras, se queda contigo.</p>
+      </div>
+      <div class="principle">
+        <div class="point">E</div>
+        <h4>Privacidad de serie</h4>
+        <p>Cuidamos los datos. Sobre todo cuando hay menores de por medio.</p>
+      </div>
+      <div class="principle">
+        <div class="point">S</div>
+        <h4>Sin anuncios abusivos</h4>
+        <p>Y nunca durante el juego de un peque.</p>
+      </div>
+      <div class="principle">
+        <div class="point">W</div>
+        <h4>Hecho con cuidado</h4>
+        <p>Estudio pequeño, mucho mimo. Cada detalle importa.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== DOSSIER ===================== -->
+<section class="band" id="dossier">
+  <div class="wrap reveal">
+    <div>
+      <h2>¿Eres prensa, colegio o partner?</h2>
+      <p>El dossier de marca tiene todo lo que necesitas: quiénes somos, qué hacemos y cómo contactar.</p>
+    </div>
+    <a class="btn btn-primary" href="dossier.pdf">Descargar dossier (PDF)</a>
+  </div>
+</section>
+
+<!-- ===================== CONTACTO ===================== -->
+<section class="contacto">
+  <svg class="topo" viewBox="0 0 1200 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <path d="M-50 90 C220 50 420 150 680 90 S1060 40 1260 110"/>
+    <path d="M-50 190 C200 150 430 250 700 180 S1080 130 1260 200"/>
+    <path d="M-50 300 C240 260 440 350 690 290 S1070 240 1260 310"/>
+  </svg>
+  <div class="wrap">
+    <p class="eyebrow">Hablemos</p>
+    <h2>¿Una idea, una duda, una colaboración?</h2>
+    <a class="mail" href="mailto:atlasacademyapps@gmail.com">atlasacademyapps@gmail.com</a>
+    <!-- Cuando existan las cuentas, sustituye este texto por enlaces reales -->
+    <p class="socials">Instagram · TikTok · próximamente</p>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <div class="wrap foot-grid">
+    <div>
+      <a class="brand" href="#top" aria-label="Atlas Academy Apps">
+        <img class="brand-logo" src="assets/atlas-negativo.png" alt="Atlas Academy Apps">
+      </a>
+    </div>
+    <nav class="foot-links">
+      <a href="privacidad.html">Política de privacidad</a>
+      <a href="https://capibaraacademy.carrd.co" target="_blank" rel="noopener">Capibara Academy</a>
+      <a href="mailto:atlasacademyapps@gmail.com">Contacto</a>
+    </nav>
+  </div>
+  <div class="wrap foot-meta">© 2026 Atlas Academy Apps · Paga una vez, tenlo de por vida · 40.4°N 3.7°W</div>
+</footer>
+
+<script>
+  // Menú móvil
+  var toggle = document.getElementById('toggle');
+  var nav = document.getElementById('nav');
+  toggle.addEventListener('click', function(){
+    var open = nav.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', open);
+  });
+  nav.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){
+      nav.classList.remove('open');
+      toggle.setAttribute('aria-expanded', false);
+    });
+  });
+
+  // Reveal al hacer scroll (respeta reduce-motion)
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(!reduce && 'IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, {threshold:0.15});
+    document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+  } else {
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in'); });
+  }
+</script>
+</body>
+</html>
